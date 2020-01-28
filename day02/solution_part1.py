@@ -11,7 +11,7 @@ def opcode_add(index, intcode_list):
     value2 = intcode_list[index2]
     final_value = value1 + value2
     intcode_list[index3] = final_value
-    print('({} + {} = {})'.format(value1, value2, final_value))
+    # print('({} + {} = {})'.format(value1, value2, final_value))
 
 def opcode_mul(index, intcode_list):
     # Function to execute when opcode 2 is encountered
@@ -20,7 +20,7 @@ def opcode_mul(index, intcode_list):
     value2 = intcode_list[index2]
     final_value = value1 * value2
     intcode_list[index3] = final_value
-    print('({} * {} = {})'.format(value1, value2, final_value))
+    # print('({} * {} = {})'.format(value1, value2, final_value))
 
 def intcode_to_list(intcode_str:str):
     # Converts an intcode program string to a list
@@ -30,7 +30,7 @@ def intcode_to_list(intcode_str:str):
 def process_intcode_list(intcode_list:list):
     # Excites an intcode program list and
     # returns the program final state
-    index = 0
+    index = 0 # Instruction pointer
     completed = False
     while completed is not True:
         digit = intcode_list[index]
