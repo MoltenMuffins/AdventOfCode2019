@@ -1,6 +1,5 @@
 # !/usr/bin/python
-from solution_part1 import (check_for_double,
-                            check_increasing_digits)
+from solution_part1 import check_criteria
 
 test_cases = {
     111111: True,
@@ -9,7 +8,7 @@ test_cases = {
 }
 
 def validate_number(value):
-    if check_for_double(value) and check_increasing_digits(value):
+    if check_criteria(value):
         return True
     return False
 
