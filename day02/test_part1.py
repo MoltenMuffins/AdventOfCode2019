@@ -1,7 +1,7 @@
 # !/usr/bin/python
 from solution_part1 import (intcode_to_list,
-                      process_intcode_list,
-                      intcode_to_list)
+                            process_intcode_list,
+                            intcode_to_list)
 
 test_cases = {
     "1,0,0,0,99" : "2,0,0,0,99",
