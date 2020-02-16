@@ -7,10 +7,10 @@ puzzle_input_path = os.path.join(dir_path, 'puzzle_input.txt')
 # to support immediate mode
 
 def get_value(intcode_list, parameter, mode='0'):
-    if mode == '1':
+    if mode == 1:
         return parameter
     else:
-        # mode == '0'
+        # mode == 0
         # Position mode
         return intcode_list[parameter]
 
@@ -39,21 +39,16 @@ def opcode_mul(intcode_list, para1, para2, para3, mode_1, mode_2, mode_3):
 def opcode_input(intcode_list, para, mode):
     # Function to execute when opcode 3 is encountered
     _ = mode
-    # integer = int(input('Please Enter input (int): '))
-    integer = 1
+    integer = int(input('Please Enter input (int): '))
+    # integer = 1
 
     # Write to intcode_list via position
     intcode_list[para] = integer
 
 def opcode_output(intcode_list, para, mode):
     # Function to execute when opcode 4 is encountered
-    # Returns a value at a given index of the intcode list
-    if mode == '0':
-        # Get value fia position
-        print(intcode_list[para])
-    else:
-        # Return value
-        print(para)
+    # Returns a value
+    print(get_value(intcode_list, para, mode))
 
 def opcode_stop():
     return False
@@ -67,7 +62,7 @@ def instruction_parser(index, intcode_list):
     opcode = int(code[-2:])
     param_modes = code[:-2]
 
-    if opcode == '99':
+    if opcode == 99:
         return opcode_stop()
 
     opcode_meta = {
@@ -87,7 +82,7 @@ def instruction_parser(index, intcode_list):
 
     # Obtain parameter modes
     param_modes = '0'*(arg_count-len(param_modes)) + param_modes
-    modes = [int(mode) for mode in param_modes]
+    modes = [int(mode) for mode in reversed(param_modes)]
 
     opcode_fn(intcode_list, *params, *modes)
     return arg_count + 1
@@ -119,5 +114,4 @@ if __name__ == "__main__":
 
     for program in intcode_program_list:
         intcode_list = intcode_to_list(program)
-
         final_state = process_intcode_list(intcode_list)
