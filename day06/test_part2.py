@@ -1,6 +1,6 @@
 # !/usr/bin/python
-from solution_part1 import (generate_orbit_map,
-                            run_count_checksum)
+from solution_part1 import generate_orbit_map
+from solution_part2 import get_num_transfers
 
 orbit_map = [
     'COM)B',
@@ -13,21 +13,22 @@ orbit_map = [
     'D)I',
     'E)J',
     'J)K',
-    'K)L'
+    'K)L',
+    'K)YOU',
+    'I)SAN'
 ]
 
 test_cases = {
-    42: orbit_map
+    4: orbit_map
 }
 
 def check_cases(cases:dict):
     for key, value in cases.items():
-        orbits = generate_orbit_map(value)
-        checksum = run_count_checksum(orbits)
-        assert checksum == key
+        graph, _ = generate_orbit_map(value)
+        num_transfers = get_num_transfers(graph)
+        print(num_transfers)
+        assert num_transfers == key
     print('👍')
 
 if __name__ == "__main__":
     check_cases(test_cases)
-
-    
