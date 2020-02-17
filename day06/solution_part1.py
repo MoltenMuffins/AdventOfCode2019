@@ -3,8 +3,6 @@ import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 puzzle_input_path = os.path.join(dir_path, 'puzzle_input.txt')
 
-# try not to cheat, but we can represent the orbits via a dict
-
 def edge_parser(edge_str:str):
     edge_str = edge_str.strip('\n')
     node, neighbour = edge_str.split(')')
@@ -36,8 +34,9 @@ def traverse_graph(entity:str, orbit_graph:dict):
     if entity == 'COM':
         return orbit_count
 
-    # Start from a dictionary value and count the
-    # number of reverse traversals
+    # Find the entity as a dictionary value and count the
+    # number of reverse traversals until find a value
+    # where "COM" is a key
     satellite = entity
     complete = False
     while not complete:
