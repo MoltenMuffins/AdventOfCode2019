@@ -1,10 +1,8 @@
 # !/usr/bin/python
 import os
 from solution_part1 import (draw_step,
-                            path_parser)
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
-puzzle_input_path = os.path.join(dir_path, 'puzzle_input.txt')
+                            path_parser,
+                            puzzle_input_path)
 
 def find_intersections_count(path1, path2, early=False):
     # Returns a list of tuples

@@ -58,7 +58,6 @@ def run_count_checksum(orbits:tuple):
     return orbit_count
 
 if __name__ == "__main__":
-
     with open(puzzle_input_path) as universal_orbit_map:
         orbits = generate_orbit_map(universal_orbit_map)
         checksum_value = run_count_checksum(orbits)

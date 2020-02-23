@@ -1,7 +1,5 @@
 # !/usr/bin/python
-from solution_part1 import (intcode_to_list,
-                            process_intcode_list,
-                            intcode_to_list)
+from intcode_computer import IntcodeComputer, intcode_to_list
 
 test_cases = {
     "1,0,0,0,99" : "2,0,0,0,99",
@@ -11,14 +9,19 @@ test_cases = {
 }
 
 def check_cases():
-    for i, items in enumerate(test_cases.items()):
+    for i, (key, value) in enumerate(test_cases.items()):
         print('Testing Case {}'.format(i))
-        key, value = items
-        input_list = intcode_to_list(key)
-        final_state = process_intcode_list(input_list)
-        print(final_state)
+        # Instantiate intcode computer
+        computer = IntcodeComputer(key)
+        # Run intcode computer
+        computer.compute()
+        print(computer.final_state)
+
+        # Convert the expected output into a list so
+        # that we can compare it to our intcode
+        # computer's output
         test_state = intcode_to_list(value)
-        assert final_state == test_state
+        assert computer.final_state == test_state
         print('===================')
     print('👍')
 

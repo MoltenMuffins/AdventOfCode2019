@@ -1,9 +1,6 @@
 # !/usr/bin/python
 import os
-dir_path = os.path.dirname(os.path.realpath(__file__))
-puzzle_input_path = os.path.join(dir_path, 'puzzle_input.txt')
-
-from solution_part1 import generate_orbit_map
+from solution_part1 import generate_orbit_map, puzzle_input_path
 
 # We modify traverse_graph to output a list of 
 # related orbits instead of the number of orbits
