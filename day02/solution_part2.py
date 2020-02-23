@@ -1,27 +1,22 @@
 # !/usr/bin/python
-from solution_part1 import (puzzle_input_path,
-                            intcode_to_list,
-                            process_intcode_list,
-                            intcode_to_list)
+from solution_part1 import puzzle_input_path
+from intcode_computer import IntcodeComputer
 
-def init_program(noun, verb, program):
-    program_cpy = program.copy()
-    program_cpy[1] = noun
-    program_cpy[2] = verb
-    return program_cpy
-
-def brute_force(program, output):
+def brute_force(program:str, output:int):
     for noun in range(100):
         for verb in range(100):
+            # Instantiate intcode computer
+            computer = IntcodeComputer(program)
             # Replace values at addresses 1 and 2 as per
             # puzzle instructions
-            cur_program = init_program(noun, verb, program)
+            computer.edit_input(1, noun)
+            computer.edit_input(2, verb)
             # We then run the program for the current
             # noun, verb pair
             try:
-                final_state = process_intcode_list(cur_program)
-                if final_state[0] == output:
-                    print('{}, {} produces the desired output {}'.format(noun,verb,desired_output))
+                computer.compute()
+                if computer.final_state[0] == output:
+                    print('{}, {} produces the desired output {}'.format(noun, verb, desired_output))
                     return noun, verb          
             except IndexError:
                 continue
@@ -34,12 +29,11 @@ if __name__ == "__main__":
         intcode_program_list = f.readlines()
 
     program = intcode_program_list[0]
-    intcode_list = intcode_to_list(program)
     
     # Iterate through possible values of nouns and verbs
     # until we obtain the pair that produces the output we want
     desired_output = 19690720
-    noun, verb = brute_force(intcode_list, desired_output)
+    noun, verb = brute_force(program, desired_output)
 
     # Run the winning pair through the checksum
     answer = (100 * noun) + verb
