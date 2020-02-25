@@ -53,7 +53,7 @@ class IntcodeComputer(object):
         _ = mode
         
         try:
-            integer = self.input_value
+            integer = self.input_values.pop(0)
         except ValueError:
             prompt = 'Input value not instantiated. Please Enter input (int):'
             integer = int(input(prompt))
@@ -123,6 +123,13 @@ class IntcodeComputer(object):
 
         return self.intcode_list
 
-    def compute(self, input_value:int=0):
-        self.input_value = input_value
+    def compute(self, input_values:list=None):
+        if input_values is None:
+            self.input_values = [0]
+        # This if statement helps us maintain backwards
+        # compatibility
+        elif type(input_values) == int:
+            self.input_values = [input_values]
+        else:
+            self.input_values = input_values
         self.final_state = self.process_intcode_list()

@@ -1,4 +1,4 @@
-from intcode_computer_pt1 import IntcodeComputer as IntcodeComputer_old
+from .intcode_computer_pt1 import IntcodeComputer as IntcodeComputer_old
 
 # We extend the IntcodeComputer class to support the
 # additional intcode operations
